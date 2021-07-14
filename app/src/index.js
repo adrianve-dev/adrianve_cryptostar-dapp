@@ -65,3 +65,14 @@ window.addEventListener("load", async function() {
 
   App.start();
 });
+
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from 'react-router-dom'
+import ReactApp from "./App";
+
+ReactDOM.render(
+  <BrowserRouter>
+    <ReactApp />
+  </BrowserRouter>, 
+  document.getElementById("app"));
