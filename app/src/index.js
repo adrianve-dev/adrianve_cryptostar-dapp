@@ -2,7 +2,7 @@ import Web3 from "web3";
 import starNotaryArtifact from "../../build/contracts/StarNotary.json";
 import './css/index.css'
 
-const App = {
+export const App = {
   web3: null,
   account: null,
   meta: null,
@@ -41,18 +41,15 @@ const App = {
   },
 
   // Implement Task 4 Modify the front end of the DAPP
-  lookUp: async function (){
+  lookUp: async function (id){
     const { lookUptokenIdToStarInfo } = this.meta.methods;
-    const id = document.getElementById("lookid").value;
     let star = await lookUptokenIdToStarInfo(id).call({from: this.account});
-    App.setStatus("Star Info is " + star + ".");
+    return star;
   }
 
 };
 
-window.App = App;
-
-window.addEventListener("load", async function() {
+export async function loadWeb3() {
   if (window.ethereum) {
     // use MetaMask's provider
     App.web3 = new Web3(window.ethereum);
@@ -64,7 +61,7 @@ window.addEventListener("load", async function() {
   }
 
   App.start();
-});
+}
 
 import React from "react";
 import ReactDOM from "react-dom";
