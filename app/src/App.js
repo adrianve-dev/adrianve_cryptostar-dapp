@@ -11,10 +11,14 @@ export default class ReactApp extends React.Component {
 
     componentDidMount() {
         loadWeb3()
+        // get all stars
+        // add to state
     }
 
-    handleCreateStar = () => {
-        console.log('star created')
+    //cannot pass App.createStar()
+    //meta (contract) in App is undefined unless method placed here
+    handleCreate = async (name, id) => {
+        return await App.createStar(name, id)
     }
 
     handleSearch = async (id) => {
@@ -36,6 +40,9 @@ export default class ReactApp extends React.Component {
                 <Navbar />
                 <div className='container'>
                     <Switch>
+                        <Route path='/create'>
+                            <CreateStar create={this.handleCreate} />
+                        </Route>
                         <Route path='/search'>
                             <SearchStar search={this.handleSearch} />
                         </Route>

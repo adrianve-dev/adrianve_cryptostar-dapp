@@ -27,17 +27,15 @@ export const App = {
     }
   },
 
-  setStatus: function(message) {
-    const status = document.getElementById("status");
-    status.innerHTML = message;
-  },
-
-  createStar: async function() {
+  createStar: async function(name, id) {
     const { createStar } = this.meta.methods;
-    const name = document.getElementById("starName").value;
-    const id = document.getElementById("starId").value;
-    await createStar(name, id).send({from: this.account});
-    App.setStatus("New Star Owner is " + this.account + ".");
+    let tx = await createStar(name, id).send({from: this.account});
+    
+    if(tx && tx.events && tx.events.Transfer) {
+      console.log('transaction: ', tx.events.Transfer.returnValues)
+    }
+
+    return await this.lookUp(id)
   },
 
   // Implement Task 4 Modify the front end of the DAPP
@@ -45,6 +43,12 @@ export const App = {
     const { lookUptokenIdToStarInfo } = this.meta.methods;
     let star = await lookUptokenIdToStarInfo(id).call({from: this.account});
     return star;
+  },
+
+  verifyStarOwner: async function(id) {
+    const { ownerOf } = this.meta.methods;
+    let owner = await ownerOf(id).call({from: this.account});
+    return owner === this.account
   }
 
 };
