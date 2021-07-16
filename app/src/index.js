@@ -3,6 +3,7 @@ import starNotaryArtifact from "../../build/contracts/StarNotary.json";
 import './css/index.css'
 import '@fortawesome/fontawesome-free/js/fontawesome'
 import '@fortawesome/fontawesome-free/js/solid'
+import { calcStarColor } from './utils/utils.js'
 
 export const App = {
   web3: null,
@@ -67,16 +68,18 @@ export const App = {
   
       while(!done) {
         let id = count
-        let star = {}
-        let owner = null
+        let star, owner, color = null
         try {
           star = await this.lookUp(count++)
           if(star) {
             owner = await this.getStarOwner(id)
+            //calc  color
+            color = await calcStarColor(id, star, owner)
           }
         } catch (e) {
           done = true
-          throw new Error('Error getting star from contract')
+          console.error(e)
+          throw e
         }
         star
           ? stars = {
@@ -85,6 +88,7 @@ export const App = {
                 name: star,
                 id,
                 owner,
+                color,
               }
             }
           : done = true

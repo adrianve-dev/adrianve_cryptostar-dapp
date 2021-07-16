@@ -10,7 +10,7 @@ export default function StarsList (props) {
             <div>
                 {starsList.map((id) => (
                     <div key={stars[id].id}>
-                        <StarCard name={stars[id].name} id={stars[id].id} owner={stars[id].owner} color={'red'} />
+                        <StarCard name={stars[id].name} id={stars[id].id} owner={stars[id].owner} color={stars[id].color} />
                     </div>
                 ))}
             </div>
