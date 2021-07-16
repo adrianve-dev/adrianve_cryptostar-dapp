@@ -41,23 +41,30 @@ button {
 }
 
 .star-card {
+    color: white;
     box-shadow: 0.2em 0.3em 0.35em #888888;
-    border: lightgray;
-    border-style: solid;
+    border: 0.25px solid lightgray;
     border-radius: 1em;
+    overflow: hidden;
     width: 90%;
 }
 
 .star-card-title {
     font-size: 2em;
+    background-color: rgb(225, 45,15);
+}
+
+.star-card-owner {
+    font-size: 0.9em;
+    background-color: #333;
 }
 
 .card-border-bottom {
-    border-bottom: 0.1em solid lightgray;
+    border-bottom: 1px solid lightgray;
 }
 
 .star-card-id {
-    border-right: 0.1em solid lightgray;
+    border-right: 1px solid lightgray;
 }
 
 @media (max-width: 575px) { 

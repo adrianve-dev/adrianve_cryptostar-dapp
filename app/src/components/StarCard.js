@@ -1,5 +1,7 @@
 import React from 'react'
 import Star from './Star'
+//names may too long, for future ref:
+//https://www.zachleat.com/web/bigtext-makes-text-big/
 
 export default function StarCard (props) {
     return (
@@ -16,7 +18,9 @@ export default function StarCard (props) {
                     <Star color={props.color} />
                 </div>
                 <div className='d-flex flex-column'>
-                    <div className='m-2 text-center'>{props.owner}</div>
+                    <div className='row text-center star-card-owner'>
+                        <strong>{props.owner}</strong>
+                    </div>
                 </div>
             </div>
             <div className='col-md-3 col-sm-1 col-lg-4'></div>
