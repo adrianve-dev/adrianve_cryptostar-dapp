@@ -68,6 +68,9 @@ export default class ReactApp extends React.Component {
                         <Route path='/stars'>
                             <StarsList stars={this.state.stars} />
                         </Route>
+                        <Route path='/'>
+                            <StarsList stars={this.state.stars} />
+                        </Route>
                     </Switch>
                 </div>
             </div>

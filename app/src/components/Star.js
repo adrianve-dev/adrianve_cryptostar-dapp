@@ -2,9 +2,8 @@ import React from 'react'
 
 export default function Star (props) {
     return (
-        <div className='row'>
-            <div className='col-sm-12 m-2 text-center'>{props.name}</div>
-            <div className='col-sm-12 m-2 text-center'>{props.id}</div>
-        </div>    
+        <div className='d-flex justify-content-center m-3' style={{color: props.color, fontSize:'10em'}}>
+            <i className="fas fa-star" ></i>
+        </div>   
     )
 }

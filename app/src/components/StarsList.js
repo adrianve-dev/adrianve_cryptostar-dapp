@@ -1,5 +1,5 @@
 import React from 'react'
-import Star from './Star'
+import StarCard from './StarCard'
 
 export default function StarsList (props) {
     const { stars } = props
@@ -10,8 +10,7 @@ export default function StarsList (props) {
             <div>
                 {starsList.map((id) => (
                     <div key={stars[id].id}>
-                        <Star name={stars[id].name} id={stars[id].id}/>
-                        <div className='col-sm-12 m-2 text-center'>{stars[id].owner}</div>
+                        <StarCard name={stars[id].name} id={stars[id].id} owner={stars[id].owner} color={'red'} />
                     </div>
                 ))}
             </div>
