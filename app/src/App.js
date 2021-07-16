@@ -8,11 +8,30 @@ import SearchStar from "./components/SearchStar";
 import { loadWeb3, App } from "./index.js";
 
 export default class ReactApp extends React.Component {
+    state = {
+        stars: null,
+    }
 
     componentDidMount() {
-        loadWeb3()
+        this.initializeApp()
+    }
+
+    initializeApp = async () => {
+        await loadWeb3()
+        await App.start()
         // get all stars
-        // add to state
+        await this.fetchInitialData()
+    }
+
+    fetchInitialData = async () => {
+        try {
+            let stars = await App.getAllStars()
+            this.setState(() => ({
+                stars: stars,
+            }))
+        } catch (e) {
+            console.error(e)
+        }
     }
 
     //cannot pass App.createStar()
@@ -45,6 +64,9 @@ export default class ReactApp extends React.Component {
                         </Route>
                         <Route path='/search'>
                             <SearchStar search={this.handleSearch} />
+                        </Route>
+                        <Route path='/stars'>
+                            <StarsList stars={this.state.stars} />
                         </Route>
                     </Switch>
                 </div>

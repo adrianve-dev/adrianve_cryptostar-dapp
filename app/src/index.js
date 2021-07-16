@@ -8,6 +8,7 @@ export const App = {
   meta: null,
 
   start: async function() {
+    console.log('web3 started')
     const { web3 } = this;
 
     try {
@@ -45,10 +46,49 @@ export const App = {
     return star;
   },
 
+  getStarOwner: async function(id) {
+    const { ownerOf } = this.meta.methods;
+    return await ownerOf(id).call({from: this.account});
+  },
+
   verifyStarOwner: async function(id) {
     const { ownerOf } = this.meta.methods;
     let owner = await ownerOf(id).call({from: this.account});
     return owner === this.account
+  },
+
+  //not optimal but contract doesn't currently have function to get all stars
+  getAllStars: async function() {
+      let count = 1
+      let done = false
+      let stars = {}
+  
+      while(!done) {
+        let id = count
+        let star = {}
+        let owner = null
+        try {
+          star = await this.lookUp(count++)
+          if(star) {
+            owner = await this.getStarOwner(id)
+          }
+        } catch (e) {
+          done = true
+          throw new Error('Error getting star from contract')
+        }
+        star
+          ? stars = {
+              ...stars,            
+              [id]: {
+                name: star,
+                id,
+                owner,
+              }
+            }
+          : done = true
+      }
+      console.log('stars: ', stars)
+      return stars
   }
 
 };
