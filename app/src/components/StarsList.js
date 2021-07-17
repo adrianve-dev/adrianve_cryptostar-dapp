@@ -14,5 +14,5 @@ export default function StarsList (props) {
             ))
         )
     }
-    return <h3 className='col-sm-12 text-center m-3'>No Stars</h3>
+    return <h3 className='col-sm-12 text-center m-3'>Loading...</h3>
 }

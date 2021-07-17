@@ -72,7 +72,6 @@ export const App = {
         //build star
         try {
           star = await buildStarObject(id)
-          console.log(star)
         } catch (e) {
           done = true
           console.error(e)
@@ -107,8 +106,6 @@ export async function loadWeb3() {
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
     App.web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:9545"),);
   }
-
-  App.start();
 }
 
 import React from "react";

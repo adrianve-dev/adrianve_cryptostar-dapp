@@ -25,6 +25,7 @@ export default class ReactApp extends React.Component {
 
     fetchInitialData = async () => {
         try {
+            //TODO: change so state updates on every star that's retrieved
             let stars = await App.getAllStars()
             this.setState(() => ({
                 stars: stars,
