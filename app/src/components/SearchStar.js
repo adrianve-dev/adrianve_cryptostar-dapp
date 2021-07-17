@@ -17,15 +17,22 @@ export default class SearchStar extends React.Component {
     }
 
     handleStarSearch = async (id) => {
-        let star = null
         try {
+            //make sure search field is a number
             if(!Number(id)) {
+                //reset state
+                this.updateStar(null)
                 throw Error(`${id} is not a Number`)
             }
+
             let name = await this.props.search(this.state.starId)
             if(name) {
-                star = await buildStarObject(this.state.starId)
+                let star = await buildStarObject(this.state.starId)
                 this.updateStar(star)
+            } else {
+                //reset state if does not exist
+                this.updateStar(null)
+                throw Error(`Star ${id} does not exist`)
             }
         } catch (e) {
             console.error(e)
