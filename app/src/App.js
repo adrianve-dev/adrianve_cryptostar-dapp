@@ -41,16 +41,7 @@ export default class ReactApp extends React.Component {
     }
 
     handleSearch = async (id) => {
-        let star = null
-        try {
-            if(!Number(id)) {
-                throw Error(`${id} is not a Number`)
-            }
-            star = await App.lookUp(id)
-            console.log('star searched: ', star, App.account)
-        } catch (e) {
-            console.error(e)
-        }
+        return await App.lookUp(id)
     }
 
     render() {
