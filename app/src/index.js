@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import starNotaryArtifact from "app\build\contracts\StarNotary.json";
+import starNotaryArtifact from "app/build/contracts/StarNotary.json";
 import './css/index.css'
 import '@fortawesome/fontawesome-free/js/fontawesome'
 import '@fortawesome/fontawesome-free/js/solid'
