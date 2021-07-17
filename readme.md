@@ -1,6 +1,6 @@
 # CryptoStar Token (CST)
 
-Ethereum application that lets astronomers mint **ERC721 tokens** that represent stars they've discovered and allows users to trade them. A token includes the star's name, coordinates, and owner of the star.
+Ethereum application that lets users mint **ERC721 tokens** that represent stars they've discovered. The contract provides functions for users to trade stars. The contract and currently minted stars can be viewed on [_The Ropsten Network_](https://ropsten.etherscan.io/token/0xba2389ea2326722be5e42e51dd0bb115df5aa115)
 
 ## Installation
 - Download and unzip contents or fork
