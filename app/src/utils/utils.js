@@ -17,6 +17,18 @@ export async function buildStarObject(id) {
     return star
 }
 
+export async function createStarObjectLocally(id, name) {
+    let owner = App.account
+    let color = await calcStarColor(id, name, owner)
+    let star = {
+        id,
+        name,
+        owner,
+        color,
+    }
+    return star
+}
+
 export async function calcStarColor(id, name, owner) {
     let s = id.toString().concat(':', name, ':', owner)
     let hex = SHA256(s).toString().substr(0, 6)
